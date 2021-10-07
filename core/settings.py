@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'articleapp',
     'shopapp',
+    'purse',
 ]
 
 AUTH_USER_MODEL = 'authapp.User'

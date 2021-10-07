@@ -24,6 +24,8 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/articles/', include('articleapp.urls', namespace='api-art')),
+    path('api/shop/', include('shopapp.urls', namespace='api-shop')),
+    path('api/wallet/', include('purse.urls', namespace='wallet'))
 ]
 
 
