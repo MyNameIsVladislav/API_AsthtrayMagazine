@@ -1,0 +1,62 @@
+[
+{
+  "model": "authapp.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$LfvcJmfMoBMy$RJu563kdrtjjE3R+lj47EUC5khVXfj4oIJYzodzt5Yc=",
+    "last_login": "2021-10-06T20:03:20.822Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-10-06T12:01:39.404Z",
+    "email": "sergiodonatelydota2@gmail.com",
+    "birthday": "1996-03-05",
+    "activation_key": "",
+    "activation_key_expires": "2021-10-08T12:00:07.701Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$A9a2vgkYNDTJ$dBz5fzt3n5cozHiwvGVXcCy6d6qacXeoi6iyI+6OWPA=",
+    "last_login": "2021-10-06T13:03:24.604Z",
+    "is_superuser": false,
+    "first_name": "Влад",
+    "last_name": "Колокольчиков",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-10-06T12:07:24.651Z",
+    "email": "deadhunt96@yandex.ru",
+    "birthday": "1991-06-19",
+    "activation_key": "a22b0512523bdff8ccb14611b668213a9a25e3cd",
+    "activation_key_expires": "2021-10-08T12:06:18.393Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.user",
+  "pk": 17,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$Mi78555QzWgG$3tuD031u3b1oYt3BDlRofGZQvfFiN62uNWFhY2bzM1s=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2021-10-06T21:05:32.983Z",
+    "email": "v.kolokolchikoff@yandex.ru",
+    "birthday": "1996-03-05",
+    "activation_key": "",
+    "activation_key_expires": "2021-10-08T21:03:06.838Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

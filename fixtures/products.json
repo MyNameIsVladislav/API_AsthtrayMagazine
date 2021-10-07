@@ -1,0 +1,114 @@
+[
+{
+  "model": "shopapp.category",
+  "pk": 2,
+  "fields": {
+    "name": "Футболка",
+    "slug": "futbolka"
+  }
+},
+{
+  "model": "shopapp.category",
+  "pk": 3,
+  "fields": {
+    "name": "Кепка",
+    "slug": "kepka"
+  }
+},
+{
+  "model": "shopapp.product",
+  "pk": 1,
+  "fields": {
+    "category": 3,
+    "name": "Кепка \"VIP\"",
+    "slug": "vip",
+    "image": "products/2021/09/18/236770002_w640_h640_dzhinsovaya-kepka-so.jpg",
+    "description": "Кепка VIP сшита  для самых элегантных мужчин и женщин",
+    "price": "1000.00",
+    "stock": 8,
+    "available": true,
+    "created": "2021-09-18T13:20:46.260Z",
+    "updated": "2021-09-22T08:02:49.583Z"
+  }
+},
+{
+  "model": "shopapp.product",
+  "pk": 2,
+  "fields": {
+    "category": 3,
+    "name": "Полиция",
+    "slug": "policiya",
+    "image": "products/2021/09/18/kepka-s-printom-politsiya-2.1600x1600.jpg",
+    "description": "Осторожно! Если ты не полицейский, то могут посадить на бутылку",
+    "price": "1500.00",
+    "stock": 5,
+    "available": true,
+    "created": "2021-09-18T13:21:35.987Z",
+    "updated": "2021-09-18T13:21:35.987Z"
+  }
+},
+{
+  "model": "shopapp.product",
+  "pk": 3,
+  "fields": {
+    "category": 3,
+    "name": "Кепка \"Динозавр\"",
+    "slug": "star-dlya-etogo-derma",
+    "image": "products/2021/09/18/kepka-traker-medooza-dino-belyy.jpg",
+    "description": "Кепка для трушных стариков и душнил",
+    "price": "1000.00",
+    "stock": 4,
+    "available": true,
+    "created": "2021-09-18T13:22:48.207Z",
+    "updated": "2021-09-21T14:38:53.892Z"
+  }
+},
+{
+  "model": "shopapp.product",
+  "pk": 4,
+  "fields": {
+    "category": 2,
+    "name": "Asthtray Magazine",
+    "slug": "asthtray-magazine",
+    "image": "products/2021/09/18/Component_15.png",
+    "description": "Футболка трушного подписчика нашей помойки",
+    "price": "1000.00",
+    "stock": 0,
+    "available": true,
+    "created": "2021-09-18T13:23:30.146Z",
+    "updated": "2021-09-21T14:35:47.760Z"
+  }
+},
+{
+  "model": "shopapp.product",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Футболка \"Вагина\"",
+    "slug": "vagina",
+    "image": "products/2021/09/18/pizda_t-shirt-800x800.jpg",
+    "description": "Ну вы поняли",
+    "price": "1500.00",
+    "stock": 5,
+    "available": true,
+    "created": "2021-09-18T13:23:58.960Z",
+    "updated": "2021-09-18T13:27:15.032Z"
+  }
+},
+{
+  "model": "shopapp.product",
+  "pk": 8,
+  "fields": {
+    "category": 2,
+    "name": "новая",
+    "slug": "novaya",
+    "image": "products/2021/09/22/00e679e0d8bf4a9086cced3e679fe246.jpg",
+    "description": "фывфыв",
+    "price": "1000.00",
+    "stock": 22,
+    "available": true,
+    "created": "2021-09-22T14:10:28.461Z",
+    "updated": "2021-09-22T14:10:28.461Z"
+  }
+}
+]
