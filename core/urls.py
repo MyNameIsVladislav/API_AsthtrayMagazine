@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/articles/', include('articleapp.urls', namespace='api-art')),
 ]
 
 
