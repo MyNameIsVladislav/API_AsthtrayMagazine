@@ -32,10 +32,6 @@ class ArticleViewSet(ReadOnlyModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = ArticleDetailSerializer(instance)
-        content = {
-            'user': str(request.user),  # `django.contrib.auth.User` instance.
-            'auth': str(request.auth),  # None
-        }
         return Response(serializer.data)
 
     @action(methods=['get'], detail=False, url_path='popular', url_name='popular')
