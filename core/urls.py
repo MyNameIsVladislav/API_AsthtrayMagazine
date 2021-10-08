@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
+from djoser.urls import urlpatterns as urls
+from djoser.urls.authtoken import urlpatterns as urls_token
+
+from core.config.yasg import urlpatterns as doc_urls
 from core import settings
 
 urlpatterns = [
@@ -28,6 +32,7 @@ urlpatterns = [
     path('api/wallet/', include('purse.urls', namespace='wallet'))
 ]
 
+urlpatterns += (urls + urls_token + doc_urls)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
