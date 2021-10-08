@@ -1,6 +1,5 @@
 from rest_framework import serializers
-
-from articleapp.models import ArticleModel, CommentsModel
+from articleapp.models import ArticleModel, CommentsModel, ModelLikesArticle
 
 
 class CommentsSerializer(serializers.ModelSerializer):
@@ -9,6 +8,22 @@ class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommentsModel
         fields = ('user_id', 'article_id', 'text')
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    user_id = serializers.HiddenField(default=1)
+
+    class Meta:
+        model = CommentsModel
+        fields = ('user_id', 'article_id', 'text')
+
+
+class LikeCreateSerializer(CommentCreateSerializer):
+    status = serializers.HiddenField(default=True)
+
+    class Meta:
+        model = ModelLikesArticle
+        fields = ('user_id', 'article_id', 'status')
 
 
 class ArticleSerializers(serializers.ModelSerializer):
