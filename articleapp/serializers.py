@@ -11,7 +11,7 @@ class CommentsSerializer(serializers.ModelSerializer):
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
-    user_id = serializers.HiddenField(default=1)
+    user_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = CommentsModel
