@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 
 
-class CustomUserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):  # todo почему в articleapp ты не выносил менеджеры вы отдельный файл, а тут стал? Где единообразие?
     """
     Custom user model manager where email is the unique identifiers
     for authentication instead of usernames.

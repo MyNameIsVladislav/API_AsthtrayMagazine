@@ -13,6 +13,6 @@ class UserWalletView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        queryset = get_object_or_404(PurseModel, user_id=request.user)
+        queryset = get_object_or_404(PurseModel, user_id=request.user)  # todo функция возвращает не queryset, а object
         serializer = WalletSerializers(queryset)
         return Response(serializer.data)

@@ -1,5 +1,5 @@
-from datetime import date
-import re
+from datetime import date  # todo зачем создавать папку внутри которой один файл с тем же названием? Если в будущем нужно будет разделять на модули создашь новую папку, пока это оверхед
+import re  # todo неверно поставлены импорты
 
 from django.core.validators import BaseValidator
 

@@ -8,7 +8,8 @@ from core import settings
 def send_verify_mail(user):
     verify_link = reverse(
         'auth:verify',
-        args=[user.email, user.activation_key])
+        args=[user.email, user.activation_key]
+    )
     key_activation = mark_safe(f'<a href="{settings.DOMAIN_NAME}{verify_link}"> Активировать </a>')
     title = 'Подтверждение учетной записи'
     message = f'Для подтверждения учетной записи {user.email}' \

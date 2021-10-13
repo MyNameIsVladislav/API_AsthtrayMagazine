@@ -14,15 +14,15 @@ class Author(models.Model):
     user_id = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('authors'))
 
     def __str__(self):
-        return f'{self.user_id.last_name}'
+        return f'{self.user_id.last_name}'  # todo зачем f-string если тут просто строка?
 
     @property
     def full_name(self):
-        return f'{self.user_id.first_name} {self.user_id.last_name} '
+        return f'{self.user_id.first_name} {self.user_id.last_name} '  # todo пробел в конце строки был добавлен намерено?
 
 
 class Genres(models.Model):
-    class Meta:
+    class Meta:  # todo в моделях на первое место лучше выносить поля, а мета опускать чуть ниже, так более читабельно
         ordering = ('name',)
     name = models.CharField(verbose_name=_('genre'), max_length=16)
     slug = models.SlugField(verbose_name=_('slug'))
@@ -35,12 +35,13 @@ class Genres(models.Model):
 
 
 class ContentQuerySet(models.QuerySet):
-    def new_content(self):
-        return self.order_by('publish')[0]
+    def new_content(self):  # todo название new_content предполагает создание чего либо.
+        # todo Непонятно зачем этот метод нужен. К тому же ты это ни где не используешь
+        return self.order_by('publish')[0]  # todo почему не использовать first?
 
 
 class TopContent(models.QuerySet):
-    def get_top(self):
+    def get_top(self):  # todo взять топ чего? Плохой нейминг
         return self.annotate(
             likes=models.Count('articleapp_modellikesarticle', distinct=True)
         ).annotate(
@@ -67,9 +68,9 @@ class ArticleModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    objects = models.Manager()
-    new_articles = ContentQuerySet.as_manager()
-    top = TopContent().as_manager()
+    objects = models.Manager()  # todo это не обязательно указывать
+    new_articles = ContentQuerySet.as_manager()  # todo для чего создавать раздельные менеджеры? Почему нельзя обойтись одним?
+    top = TopContent().as_manager()  # todo для чего создавать раздельные менеджеры? Почему нельзя обойтись одним?
 
     def __str__(self):
         return f'{self.title} - {self.pk}'
@@ -85,7 +86,7 @@ class ArticleUserModel(models.Model):
     user_id = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,
                                 verbose_name=_('user'))
     article_id = models.ForeignKey('ArticleModel', on_delete=models.CASCADE,
-                                   verbose_name=_('article'), related_name='%(app_label)s_%(class)s')
+                                   verbose_name=_('article'), related_name='%(app_label)s_%(class)s')  # todo не самый лучший способ объявить related_name. Лучше делать все явно
     status = models.BooleanField(verbose_name='status', max_length=5, default=True)
 
     def __str__(self):
@@ -109,7 +110,7 @@ class CommentsModel(ArticleUserModel):
         return f'Comment by {self.user_id.first_name} - date: {self.created_at}'
 
 
-class ModelLikesComment(ArticleUserModel):
+class ModelLikesComment(ArticleUserModel):  # todo что за нейминг? Почему Model в начале названия?
     class Meta:
         unique_together = (("user_id", "comment_id"),)
 
