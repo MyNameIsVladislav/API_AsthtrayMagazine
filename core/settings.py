@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
-from core.config import logging, ckeditor_conf
+from core.config import logging, ckeditor_conf, token_cnf
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,10 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'drf_yasg',
     'ckeditor',
     'ckeditor_uploader',
     'articleapp',
     'shopapp',
+    'purse',
 ]
 
 AUTH_USER_MODEL = 'authapp.User'
@@ -119,6 +125,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -166,3 +183,5 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = os.getenv('PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+DJOSER = token_cnf.DJOSER_CNF

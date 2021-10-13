@@ -17,13 +17,22 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
+from djoser.urls import urlpatterns as urls
+from djoser.urls.authtoken import urlpatterns as urls_token
+
+from core.config.yasg import urlpatterns as doc_urls
 from core import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/articles/', include('articleapp.urls', namespace='api-art')),
+    path('api/shop/', include('shopapp.urls', namespace='api-shop')),
+    path('api/wallet/', include('purse.urls', namespace='wallet'))
 ]
 
+urlpatterns += (urls + urls_token + doc_urls)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
