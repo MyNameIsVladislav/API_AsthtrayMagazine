@@ -23,20 +23,28 @@ class BasketModel(models.Model):
         return sum(item.total_price for item in self.in_cart.all())
 
 
+class RelatedFields(models.Manager):
+    def all(self):
+        return super().select_related('product').annotate(
+            price=models.F('product__price')
+        ).annotate(
+            total_price=models.F('price') * models.F('quantity')
+        ).order_by('id')
+
+
 class BasketProductModel(models.Model):
-    cart = models.ForeignKey(BasketModel, on_delete=models.CASCADE, verbose_name='cart', related_name='in_cart')
+    cart = models.ForeignKey(
+        BasketModel,
+        on_delete=models.CASCADE,
+        verbose_name='cart',
+        related_name='in_cart'
+    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='product')
     quantity = models.PositiveIntegerField(verbose_name='quantity')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    @property
-    def price(self):
-        return self.product.price
-
-    @property
-    def total_price(self):
-        return self.product.price * self.quantity
+    objects = RelatedFields()
 
     def __str__(self):
         return f'{self.cart.user.first_name} - {self.product.name} - {self.quantity}'

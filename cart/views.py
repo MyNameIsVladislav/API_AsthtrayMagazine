@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.db.models import F
 
 from rest_framework.generics import CreateAPIView
 from rest_framework.mixins import UpdateModelMixin
@@ -11,18 +12,18 @@ from cart.models import BasketProductModel, BasketModel
 from cart.serializers import AddProductSerializers, ProductInCartSerializer
 
 
-class AddProductInCart(UpdateModelMixin, CreateAPIView):
+class BasketProductView(UpdateModelMixin, CreateAPIView):
     queryset = BasketProductModel
     serializer_class = AddProductSerializers
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
-        if (instance := BasketProductModel.objects.filter(
+        if (queryset := BasketProductModel.objects.filter(
                 cart__user=request.user, product__pk=int(request.data['product']))):
-            return self.update(request, queryset=instance.first())
+            return self.update(request, queryset=queryset.first())
 
-        return super(AddProductInCart, self).create(request, *args, **kwargs)
+        return super(BasketProductView, self).create(request, *args, **kwargs)
 
     def update(self, request, **kwargs):
         serializer = self.get_serializer(kwargs['queryset'], data=request.data)
@@ -33,7 +34,7 @@ class AddProductInCart(UpdateModelMixin, CreateAPIView):
 
 
 class UserCartView(APIView):
-    """Баланс пользователя"""
+    """Корзина пользователя"""
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAuthenticated,)
 

@@ -15,6 +15,9 @@ class AddProductSerializers(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    price = serializers.DecimalField(max_digits=10, decimal_places=2)
+    total_price = serializers.DecimalField(max_digits=10, decimal_places=2)
+
     class Meta:
         model = BasketProductModel
         fields = ['product', 'quantity', 'price', 'total_price']
