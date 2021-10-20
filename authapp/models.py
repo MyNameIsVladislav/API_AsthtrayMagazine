@@ -10,7 +10,7 @@ from django.utils.timezone import now
 from rest_framework.authtoken.models import Token
 
 from authapp.managers import CustomUserManager
-from authapp.utils.validators.validators import birthday_validator, phone_validator
+from authapp.utils.validators import birthday_validator, phone_validator
 
 
 class User(AbstractUser):
