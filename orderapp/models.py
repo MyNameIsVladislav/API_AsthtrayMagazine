@@ -1,6 +1,5 @@
 from django.db import models
 
-from shopapp.models import Product
 from core.settings import AUTH_USER_MODEL
 
 

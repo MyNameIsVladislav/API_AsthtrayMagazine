@@ -7,7 +7,7 @@ from cart.serializers import ProductInCartSerializer
 from cart.models import BasketModel
 
 from orderapp.serializer import OrderSerializer
-from orderapp.service import pay_product
+from orderapp.service import Payment
 
 
 class PaymentView(APIView):
@@ -16,14 +16,13 @@ class PaymentView(APIView):
     serializer_class = OrderSerializer
 
     def get(self, request, *args, **kwargs):
-        queryset = BasketModel.objects.get(user=request.user)
-        serializer = ProductInCartSerializer(queryset, context={'request': request, 'name': request.user.first_name})
+        obj, _ = BasketModel.objects.get_or_create(user=request.user)
+        serializer = ProductInCartSerializer(obj, context={'request': request, 'name': request.user.first_name})
         return Response(serializer.data, status=200)
 
     def post(self, request, *args, **kwargs):
         cart = request.user.user_cart
         serializer = self.serializer_class(data=request.data, context={'request': request})
-        serializer.is_valid()
-        if cart.in_cart.all():
-            return pay_product(request, serializer, cart)
+        if serializer.is_valid() and cart.in_cart.all():
+            return Payment.pay_product(request, serializer, cart)
         return Response(data={'Error': 'Заказ не может быть обработан'}, status=203)
