@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'articleapp',
     'shopapp',
+    'cart',
+    'orderapp',
     'purse',
 ]
 
@@ -151,6 +153,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = '6379'
+
+CELERY_BROKER_URL = CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = CELERY_RESULT_SERIALIZER = 'json'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

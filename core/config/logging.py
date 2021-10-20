@@ -7,7 +7,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
 def get_dir(full_path):
     os.makedirs(full_path, exist_ok=True)
-    return f'{full_path}\\error.log'
+    return f'{full_path}/error.log'
 
 
 def logging():

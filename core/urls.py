@@ -29,7 +29,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/articles/', include('articleapp.urls', namespace='api-art')),
     path('api/shop/', include('shopapp.urls', namespace='api-shop')),
-    path('api/wallet/', include('purse.urls', namespace='wallet'))
+    path('api/wallet/', include('purse.urls', namespace='wallet')),
+    path('api/cart/', include('cart.urls', namespace='cart')),
+    path('api/order/', include('orderapp.urls', namespace='order'))
 ]
 
 urlpatterns += (urls + urls_token + doc_urls)

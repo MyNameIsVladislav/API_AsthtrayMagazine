@@ -65,7 +65,6 @@ class CommentsView(CreateAPIView):
     serializer_class = CommentCreateSerializer
 
 
-
 class LikeView(APIView):
     """Поставить лайк"""
 
