@@ -1,7 +1,7 @@
-from datetime import date
-import re
-
 from django.core.validators import BaseValidator
+
+import re
+from datetime import date
 
 
 class BirthdayValidatorPhone(BaseValidator):

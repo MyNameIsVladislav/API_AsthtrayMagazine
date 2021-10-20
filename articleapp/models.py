@@ -14,11 +14,11 @@ class Author(models.Model):
     user_id = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('authors'))
 
     def __str__(self):
-        return f'{self.user_id.last_name}'
+        return self.user_id.last_name
 
     @property
     def full_name(self):
-        return f'{self.user_id.first_name} {self.user_id.last_name} '
+        return f'{self.user_id.first_name} {self.user_id.last_name}'
 
 
 class Genres(models.Model):
@@ -36,11 +36,9 @@ class Genres(models.Model):
 
 class ContentQuerySet(models.QuerySet):
     def new_content(self):
-        return self.order_by('publish')[0]
+        return self.order_by('publish').first()
 
-
-class TopContent(models.QuerySet):
-    def get_top(self):
+    def get_popular_articles(self):
         return self.annotate(
             likes=models.Count('articleapp_modellikesarticle', distinct=True)
         ).annotate(
@@ -68,8 +66,7 @@ class ArticleModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = models.Manager()
-    new_articles = ContentQuerySet.as_manager()
-    top = TopContent().as_manager()
+    content = ContentQuerySet.as_manager()
 
     def __str__(self):
         return f'{self.title} - {self.pk}'
